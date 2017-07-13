@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactMatchers #toMatchElement should describe a failed match 1`] = `
+"Expected element:
+<div />
+
+To match:
+<span />"
+`;
+
+exports[`ReactMatchers #toMatchElement should describe a failed negated match 1`] = `
+"Expected element:
+<div />
+
+not to match:
+<div />
+
+but it did!!"
+`;
