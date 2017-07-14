@@ -1,11 +1,9 @@
 import React from 'react';
 import jestReactMatchers from '../index';
 
-describe('jest-react-matchers', () => {
-  beforeEach(() => {
-    expect.extend(jestReactMatchers);
-  });
+expect.extend(jestReactMatchers);
 
+describe('jest-react-matchers', () => {
   describe('toMatchElement', () => {
     it('should match basic html elements based on the expected properties', () => {
       const actual = <h1 id='foo' data-herring='red'>Hiyo!!</h1>;
@@ -52,6 +50,33 @@ describe('jest-react-matchers', () => {
     it('should handle elements with no children', () => {
       const actual = <div />;
       expect(actual).toMatchElement(<div />);
+    });
+  });
+
+  describe('toHaveMatchingChildren', () => {
+    const actual = (
+      <ul>
+        Why is this here!?
+        <li>Pippy</li>
+        <li>Hatch</li>
+        <li wife={true}>Lu</li>
+      </ul>
+    );
+
+    it('should match all of the expected children', () => {
+      const expected = (
+        <ul>
+          Why is this here!?
+          <li>Pippy</li>
+          <li wife={true} />
+        </ul>
+      );
+
+      expect(actual).toHaveMatchingChildren(<li />, <li>Pippy</li>, <li>Hatch</li>);
+      expect(actual).toHaveMatchingChildren('Why is this here!?');
+      expect(actual).toHaveMatchingChildren(expected.props.children);
+
+      expect(actual).not.toHaveMatchingChildren(<div />, 'nor this');
     });
   });
 });

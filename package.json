@@ -32,7 +32,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "describe-react-element": "git+https://git@github.com/autopilotconsulting/describe-react-element.git",
+    "describe-react-element": "^0.1.0",
     "jest": "^20.0.4",
     "jest-environment-node-debug": "^2.0.0",
     "react": "^15.6.1",
@@ -40,7 +40,9 @@
     "react-test-renderer": "^15.6.1"
   },
   "jest": {
-    "coveragePathIgnorePatterns": ["/support"]
+    "coveragePathIgnorePatterns": [
+      "/support"
+    ]
   },
   "babel": {
     "presets": [

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactMatchers #toHaveMatchingChildren should describe a failure appropriately 1`] = `
+"Expected to find children:
+  <div data-awesome='true'>
+    An awesome div!!
+  </div>
+  <span>
+    Lame Span
+  </span>
+
+in:
+  <div>
+    <li>
+      Pippy
+    </li>
+    <li>
+      Hatch
+    </li>
+    <li data-tis-wife='true'>
+      Lu
+    </li>
+  </div>"
+`;
+
+exports[`ReactMatchers #toHaveMatchingChildren should describe a negated failure appropriately 1`] = `
+"Expected not to find children:
+  <li data-tis-wife='true' />
+  <li>
+    Lu
+  </li>
+
+in:
+  <div>
+    <li>
+      Pippy
+    </li>
+    <li>
+      Hatch
+    </li>
+    <li data-tis-wife='true'>
+      Lu
+    </li>
+  </div>"
+`;
+
+exports[`ReactMatchers #toHaveMatchingChildren should fail if the actual element has no children 1`] = `
+"Actual element has no children:
+  <div />"
+`;
