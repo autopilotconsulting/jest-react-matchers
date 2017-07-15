@@ -1,6 +1,6 @@
 {
   "name": "jest-react-matchers",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A small set of react matchers to make testing ReactJS components with Jest more pleasant.",
   "main": "./distribution/index.js",
   "scripts": {
@@ -26,18 +26,20 @@
   },
   "homepage": "https://github.com/autopilotconsulting/jest-react-matchers#readme",
   "devDependencies": {
-    "array-flatten": "^2.1.1",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "describe-react-element": "^0.1.0",
     "jest": "^20.0.4",
     "jest-environment-node-debug": "^2.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1"
+  },
+  "dependencies": {
+    "array-flatten": "^2.1.1",
+    "describe-react-element": "^0.1.0"    
   },
   "jest": {
     "coveragePathIgnorePatterns": [
