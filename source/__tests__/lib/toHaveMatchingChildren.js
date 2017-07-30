@@ -36,11 +36,19 @@ describe('ReactMatchers', () => {
       expect(result.pass).toBe(false);
     });
 
-    it('should not pass if any unexpected children are present', () => {
-      matcherContext.isNot = true;
-      let result = toHaveMatchingChildren.call(matcherContext, actual, [<li>Pippy</li>, <span />]);
-      expect(result.pass).toBe(false);
-    });
+    describe('when negated', () => {
+      it('should not "pass" if all unexpected elements are missing', () => {
+        matcherContext.isNot = true;
+        let result = toHaveMatchingChildren.call(matcherContext, actual, [<marquee />, <span />]);
+        expect(result.pass).toBe(false);
+      });
+
+      it('should "pass" if any unexpected children are present', () => {
+        matcherContext.isNot = true;
+        let result = toHaveMatchingChildren.call(matcherContext, actual, [<li>Pippy</li>, <span />]);
+        expect(result.pass).toBe(true);
+      });
+    })
 
     it('should fail if the actual element has no children', () => {
       let actual = <div />;

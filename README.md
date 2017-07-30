@@ -125,6 +125,35 @@ in:
   </div>
 ```
 
+## Find Element in Hierarchy
+
+Finding elements in a hierarchy is also easy.  That is to say, if you're looking for the presence (or absence) of elements
+anywhere in the object graph, you can do that too!
+
+```javascript
+const actual = (
+  <div>
+    <h1>Why is this here!?</h1>
+    <div>
+      <span>Pippy</span>
+    </div>
+    <li>Hatch</li>
+    <div>
+      <p>
+        <li wife={true}>Lu</li>
+      </p>  
+    </div>
+  </div>
+);
+
+it('should match all of the expected children', () => {
+  expect(actual).toFindMatchingElements(<li />, <span>Pippy</span>, <li>Hatch</li>, 'Pippy');
+  expect(actual).toFindMatchingElements('Why is this here!?');
+
+  expect(actual).not.toFindMatchingElements(<marquee />, 'nor this');
+});
+```
+
 ## Installation
 
 ```

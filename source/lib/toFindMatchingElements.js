@@ -4,27 +4,19 @@ import groupArray from './groupArray';
 
 import flatten from 'array-flatten';
 
-function toHaveMatchingChildren(actualElement, ...expectedElements) {
+function toFindMatchingElements(actualElement, ...expectedElements) {
   const actualDescription = describeReactElement(actualElement, 1);
-  const children = actualElement.props.children;
-
-  if (typeof(children) === 'undefined') { 
-    const message = [
-      'Actual element has no children:',
-      actualDescription
-    ].join("\n");
-
-    return { pass: false, message };
-  }
 
   expectedElements = flatten([expectedElements]);
-  const { true: hits, false: misses } = groupArray(expectedElements, (element) => {
-    return ReactMatcherUtils.collectionHasMatchForElement(this.equals, children, element);
+  const { true: hits, false: misses } = groupArray(expectedElements, (expectedElement) => {
+    let matches = ReactMatcherUtils.findMatchingElement(this.equals, actualElement, expectedElement);
+    matches = flatten([matches]).filter(element => element);
+    return matches.length > 0;
   });
   
   const isCorrect = this.isNot ? !hits : !misses;
   const result = { pass: isCorrect != this.isNot };
-  
+
   if (isCorrect) { return result; }
 
   const describeExpected = (element) => describeReactElement(element, 1);
@@ -32,7 +24,7 @@ function toHaveMatchingChildren(actualElement, ...expectedElements) {
     const hitDescriptions = hits.map(describeExpected);
 
     result.message = [
-      'Expected not to find children:',
+      'The following unexpected elements were found:',
       ...hitDescriptions,
       '',
       'in:',
@@ -42,7 +34,7 @@ function toHaveMatchingChildren(actualElement, ...expectedElements) {
     const missDescriptions = misses.map(describeExpected);
 
     result.message = [
-      'Expected to find children:',
+      'The following elements were not found:',
       ...missDescriptions,
       '',
       'in:',
@@ -53,4 +45,4 @@ function toHaveMatchingChildren(actualElement, ...expectedElements) {
   return result;
 };
 
-export default toHaveMatchingChildren;
+export default toFindMatchingElements;

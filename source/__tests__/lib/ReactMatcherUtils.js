@@ -161,4 +161,64 @@ describe('ReactMatcherUtils', () => {
       expect(result).toBe(true);
     });
   });
+
+  describe('findMatchingElement', () => {
+    const pippyDiv = (
+      <div>
+        <span>Pippy</span>
+      </div>
+    );
+
+    const actualHierarchy = (
+      <div>
+        {pippyDiv}
+        <li>Hatch</li>
+        <div>
+          <p>
+            <li data-tis-wife={true}>Lu</li>
+            <table />
+          </p>
+        </div>
+      </div>
+    );
+
+    it('should return a collection of matched elements from any level in the hierarchy', () => {
+      let result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, <div />);
+      expect(result).toContain(actualHierarchy);
+      expect(result).toContain(pippyDiv);
+      expect(result.length).toBe(3);
+
+      result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, <li />);
+      expect(result).toEqual([<li>Hatch</li>, <li data-tis-wife={true}>Lu</li>]);  
+    });
+
+    it('should return undefined if the actual element is undefined', () => {
+      const result = ReactMatcherUtils.findMatchingElement(equals, undefined, <div />);
+      expect(result).toEqual(undefined);
+    });
+
+    it('should return undefined if the element is not found', () => {
+      let result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, <marquee />);
+      expect(result).toEqual(undefined);
+    });
+
+    it('should return one element if only one element matches', () => {
+      let result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, <li>Hatch</li>);
+      expect(result).toEqual(<li>Hatch</li>);
+
+      result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, 'Pippy');
+      expect(result).toBe('Pippy');
+
+      result = ReactMatcherUtils.findMatchingElement(equals, actualHierarchy, <div><p /></div>);
+      const expected = (        
+        <div>
+          <p>
+            <li data-tis-wife={true}>Lu</li>
+            <table />
+          </p>
+      </div>
+      );
+      expect(result).toEqual(expected);
+    });
+  });
 });

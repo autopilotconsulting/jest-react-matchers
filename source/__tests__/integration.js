@@ -79,4 +79,28 @@ describe('jest-react-matchers', () => {
       expect(actual).not.toHaveMatchingChildren(<div />, 'nor this');
     });
   });
+
+  describe('toFindMatchingElements', () => {
+    const actual = (
+      <div>
+        <h1>Why is this here!?</h1>
+        <div>
+          <span>Pippy</span>
+        </div>
+        <li>Hatch</li>
+        <div>
+          <p>
+            <li wife={true}>Lu</li>
+          </p>  
+        </div>
+      </div>
+    );
+
+    it('should match all of the expected children', () => {
+      expect(actual).toFindMatchingElements(<li />, <span>Pippy</span>, <li>Hatch</li>, 'Pippy');
+      expect(actual).toFindMatchingElements('Why is this here!?');
+
+      expect(actual).not.toFindMatchingElements(<marquee />, 'nor this');
+    });
+  });
 });

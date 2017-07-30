@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactMatchers #toFindMatchingElements should describe a failure appropriately 1`] = `
+"The following elements were not found:
+  <div data-awesome='true'>
+    An awesome div!!
+  </div>
+  <span>
+    Lame Span
+  </span>
+
+in:
+  <div>
+    <div>
+      <span>
+        Pippy
+      </span>
+    </div>
+    <li>
+      Hatch
+    </li>
+    <div>
+      <p>
+        <li data-tis-wife='true'>
+          Lu
+        </li>
+      </p>
+    </div>
+  </div>"
+`;
+
+exports[`ReactMatchers #toFindMatchingElements should describe a negated failure appropriately 1`] = `
+"The following unexpected elements were found:
+  <li data-tis-wife='true' />
+  <li>
+    Lu
+  </li>
+  Pippy
+
+in:
+  <div>
+    <div>
+      <span>
+        Pippy
+      </span>
+    </div>
+    <li>
+      Hatch
+    </li>
+    <div>
+      <p>
+        <li data-tis-wife='true'>
+          Lu
+        </li>
+      </p>
+    </div>
+  </div>"
+`;
