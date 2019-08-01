@@ -28,6 +28,6 @@ function toMatchElement(actualElement, expectedElement) {
   }
 
   return result;
-};
+}
 
 export default toMatchElement;

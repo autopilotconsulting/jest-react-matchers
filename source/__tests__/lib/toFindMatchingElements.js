@@ -1,7 +1,6 @@
 import React from 'react';
 import { equals } from '../../../support/jasmine_utils';
 
-import ReactMatcherUtils from '../../lib/ReactMatcherUtils.js';
 import toFindMatchingElements from '../../lib/toFindMatchingElements.js';
 
 describe('ReactMatchers', () => {
