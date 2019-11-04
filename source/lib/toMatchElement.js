@@ -8,7 +8,7 @@ function toMatchElement(actualElement, expectedElement) {
   const expectedDescription = describeReactElement(expectedElement);
 
   if (result.pass) {
-    result.message = [
+    result.message = () => [
       'Expected element:',
       actualDescription,
       '',
@@ -18,7 +18,7 @@ function toMatchElement(actualElement, expectedElement) {
       'but it did!!',
     ].join("\n");
   } else {
-    result.message = [
+    result.message = () => [
       'Expected element:',
       actualDescription,
       '',

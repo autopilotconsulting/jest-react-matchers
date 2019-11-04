@@ -12,7 +12,7 @@ describe('ReactMatchers', () => {
       const expected = <div />;
 
       const result = toMatchElement.call(matcherContext, actual, expected);
-      
+
       expect(result.pass).toBe(true)
     });
 
@@ -21,18 +21,18 @@ describe('ReactMatchers', () => {
       const expected = <span />;
 
       const result = toMatchElement.call(matcherContext, actual, expected);
-      
+
       expect(result.pass).toBe(false)
     });
 
     it('should describe a failed match', () => {
-      const result = toMatchElement.call(matcherContext, <div />, <span />);      
-      expect(result.message).toMatchSnapshot();
+      const result = toMatchElement.call(matcherContext, <div />, <span />);
+      expect(result.message()).toMatchSnapshot();
     });
 
     it('should describe a failed negated match', () => {
-      const result = toMatchElement.call(matcherContext, <div />, <div />);      
-      expect(result.message).toMatchSnapshot();
+      const result = toMatchElement.call(matcherContext, <div />, <div />);
+      expect(result.message()).toMatchSnapshot();
     });
   });
 });

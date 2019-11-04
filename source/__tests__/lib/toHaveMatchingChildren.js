@@ -6,7 +6,7 @@ import toHaveMatchingChildren from '../../lib/toHaveMatchingChildren.js';
 describe('ReactMatchers', () => {
   describe('#toHaveMatchingChildren', () => {
     let matcherContext;
-    
+
     const actual = (
       <div>
         <li>Pippy</li>
@@ -54,7 +54,7 @@ describe('ReactMatchers', () => {
 
       const result = toHaveMatchingChildren.call(matcherContext, actual, <h1 />);
       expect(result.pass).toBe(false);
-      expect(result.message).toMatchSnapshot();
+      expect(result.message()).toMatchSnapshot();
     });
 
     it('should describe a failure appropriately', () => {
@@ -65,8 +65,8 @@ describe('ReactMatchers', () => {
         <span>Lame Span</span>
       ];
 
-      const result = toHaveMatchingChildren.call(matcherContext, actual, expected);      
-      expect(result.message).toMatchSnapshot();
+      const result = toHaveMatchingChildren.call(matcherContext, actual, expected);
+      expect(result.message()).toMatchSnapshot();
     });
 
     it('should describe a negated failure appropriately', () => {
@@ -79,7 +79,7 @@ describe('ReactMatchers', () => {
 
       matcherContext.isNot = true;
       const result = toHaveMatchingChildren.call(matcherContext, actual, unexpected);
-      expect(result.message).toMatchSnapshot();
+      expect(result.message()).toMatchSnapshot();
     });
   });
 });

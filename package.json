@@ -1,6 +1,6 @@
 {
   "name": "jest-react-matchers",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A small set of react matchers to make testing ReactJS components with Jest more pleasant.",
   "main": "./distribution/index.js",
   "scripts": {

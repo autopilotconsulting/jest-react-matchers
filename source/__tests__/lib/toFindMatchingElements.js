@@ -6,7 +6,7 @@ import toFindMatchingElements from '../../lib/toFindMatchingElements.js';
 describe('ReactMatchers', () => {
   describe('#toFindMatchingElements', () => {
     let matcherContext;
-    
+
     const actual = (
       <div>
         <div>
@@ -64,8 +64,8 @@ describe('ReactMatchers', () => {
         <span>Lame Span</span>
       ];
 
-      const result = toFindMatchingElements.call(matcherContext, actual, expected);      
-      expect(result.message).toMatchSnapshot();
+      const result = toFindMatchingElements.call(matcherContext, actual, expected);
+      expect(result.message()).toMatchSnapshot();
     });
 
     it('should describe a negated failure appropriately', () => {
@@ -79,7 +79,7 @@ describe('ReactMatchers', () => {
 
       matcherContext.isNot = true;
       const result = toFindMatchingElements.call(matcherContext, actual, unexpected);
-      expect(result.message).toMatchSnapshot();
+      expect(result.message()).toMatchSnapshot();
     });
   });
 });

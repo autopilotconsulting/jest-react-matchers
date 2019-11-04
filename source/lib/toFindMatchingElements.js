@@ -13,7 +13,7 @@ function toFindMatchingElements(actualElement, ...expectedElements) {
     matches = flatten([matches]).filter(element => element);
     return matches.length > 0;
   });
-  
+
   const isCorrect = this.isNot ? !hits : !misses;
   const result = { pass: isCorrect != this.isNot };
 
@@ -23,7 +23,7 @@ function toFindMatchingElements(actualElement, ...expectedElements) {
   if (this.isNot) {
     const hitDescriptions = hits.map(describeExpected);
 
-    result.message = [
+    result.message = () => [
       'The following unexpected elements were found:',
       ...hitDescriptions,
       '',
@@ -33,7 +33,7 @@ function toFindMatchingElements(actualElement, ...expectedElements) {
   } else {
     const missDescriptions = misses.map(describeExpected);
 
-    result.message = [
+    result.message = () => [
       'The following elements were not found:',
       ...missDescriptions,
       '',
